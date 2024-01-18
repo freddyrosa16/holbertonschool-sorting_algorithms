@@ -12,20 +12,16 @@ void insertion_sort_list(listint_t **list)
 	if (!list || !(*list) || !((*list)->next))
 		return;
 
-	/* dance begins with 1st from house left following */
 	follow = (*list);
-	/* and next dancer to house right leading */
 	lead = (*list)->next;
 	while (lead)
 	{
 		new = lead->next;
 		while (follow && lead->n < follow->n)
 		{
-			/* lead and follow swap positions */
 			if (follow->prev)
 				follow->prev->next = lead;
 			else
-				/* if lead makes it to house left, now head */
 				*list = lead;
 			if (lead->next)
 				lead->next->prev = follow;
@@ -35,10 +31,8 @@ void insertion_sort_list(listint_t **list)
 			follow->next = temp;
 			follow->prev = lead;
 			print_list(*list);
-			/* compare next pair, flowing to house left */
 			follow = lead->prev;
 		}
-		/* lead sorted to left, new cycle starts @ right leading edge */
 		lead = new;
 		if (lead)
 			follow = lead->prev;
